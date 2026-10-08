@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Persona 3 Reload // Oceanic Menu Theme",
+  "version": "1.0.0",
+  "description": "Authentic Persona 3 Reload theme for Google Chrome featuring vibrant oceanic blues, sharp electric cyan accents, and the iconic in-game menu artwork.",
+  "theme": {
+    "images": {
+      "theme_ntp_background": "images/theme_ntp_background.jpg"
+    },
+    "properties": {
+      "ntp_background_alignment": "bottom",
+      "ntp_background_repeat": "no-repeat",
+      "ntp_background_size": "cover"
+    },
+    "colors": {
+      "frame": [0, 36, 115],
+      "frame_inactive": [0, 22, 70],
+      "toolbar": [0, 68, 175],
+      "tab_text": [255, 255, 255],
+      "tab_background_text": [140, 205, 255],
+      "bookmark_text": [235, 248, 255],
+      "ntp_background": [0, 7, 175],
+      "ntp_text": [0, 230, 255],
+      "omnibox_background": [0, 26, 85],
+      "omnibox_text": [255, 255, 255]
+    }
+  }
+}

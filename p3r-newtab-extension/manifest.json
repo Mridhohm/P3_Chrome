@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Persona 3 Reload // Interactive New Tab",
+  "version": "1.0.0",
+  "description": "Transforms every new tab into the iconic Persona 3 Reload underwater menu with interactive search, live calendar, synthesized sound effects, and keyboard navigation.",
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": [
+    "topSites",
+    "bookmarks"
+  ],
+  "host_permissions": [
+    "https://suggestqueries.google.com/*"
+  ]
+}

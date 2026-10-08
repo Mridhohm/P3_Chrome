@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Tab</title>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Seamless Dual-Layer Video Background Engine -->
+  <video id="bgVideoA" class="bg-video active-video" autoplay muted playsinline preload="auto" poster="assets/p3r_menu_bg.jpg">
+    <source src="assets/p3r_menu_bg.mp4" type="video/mp4">
+  </video>
+  <video id="bgVideoB" class="bg-video standby-video" muted playsinline preload="metadata" poster="assets/p3r_menu_bg.jpg">
+    <source src="assets/p3r_menu_bg.mp4" type="video/mp4">
+  </video>
+
+  <!-- Water Caustic Gradient Overlay -->
+  <div class="caustic-overlay"></div>
+
+  <!-- 1. TOP-LEFT HUD WALLET BOX -->
+  <div class="hud-wallet-box" id="walletHud" title="Click to toggle between Time and Calendar">
+    <div class="wallet-value" id="walletValue">15:50:00</div>
+    <div class="wallet-label" id="walletLabel">CURRENT TIME</div>
+  </div>
+
+  <!-- 2. THE MAIN PERSONA 3 NAVIGATION CONTAINER -->
+  <div class="stage-container">
+    
+    <!-- ROOT MENU (The 4 Functional Core Buttons) -->
+    <main class="menu-stage" id="rootMenu">
+      <nav class="menu-list">
+        
+        <!-- 01. SEARCH (Direct Omni Search) -->
+        <div class="menu-item active" data-screen="search">
+          <div class="badge-bg"></div>
+          <div class="ribbon-slash"></div>
+          <span class="item-text">SEARCH</span>
+        </div>
+
+        <!-- 02. BOOKMARKS (Saved Pages & History) -->
+        <div class="menu-item" data-screen="bookmarks">
+          <div class="badge-bg"></div>
+          <div class="ribbon-slash"></div>
+          <span class="item-text">BOOKMARKS</span>
+        </div>
+
+        <!-- 03. PINNED (Quick Launch Arcana Apps) -->
+        <div class="menu-item" data-screen="pinned">
+          <div class="badge-bg"></div>
+          <div class="ribbon-slash"></div>
+          <span class="item-text">PINNED</span>
+        </div>
+
+        <!-- 04. SETTINGS (System, Audio & Loop Tuner) -->
+        <div class="menu-item" data-screen="settings">
+          <div class="badge-bg"></div>
+          <div class="ribbon-slash"></div>
+          <span class="item-text">SETTINGS</span>
+        </div>
+
+      </nav>
+    </main>
+
+    <!-- IN-WORLD SLIDING SUB-SCREEN (Slides in dynamically from right) -->
+    <aside class="sub-screen" id="subScreen">
+      
+      <!-- Back Header Bar -->
+      <div class="sub-header-bar">
+        <button class="sub-back-btn" id="subBackBtn">
+          ⟵ RETURN <span class="key-hint">[ESC]</span>
+        </button>
+        <span class="sub-title-tag" id="subTitleTag">// DIRECT SEARCH GATEWAY</span>
+      </div>
+
+      <!-- SCREEN 1: SEARCH CONSOLE -->
+      <div class="sub-panel" id="panelSearch">
+        <div class="p3-search-wrapper">
+          <form id="searchForm" class="p3-search-form">
+            <div class="p3-search-badge">QUERY</div>
+            <input 
+              type="text" 
+              id="searchInput" 
+              class="p3-search-input" 
+              placeholder="Summon web search or enter URL..." 
+              autocomplete="off"
+            />
+            <button type="submit" class="p3-search-btn">SEARCH ↵</button>
+          </form>
+
+          <div class="search-tips font-mono">
+            <span>PRESS [ENTER] TO SEARCH GOOGLE</span>
+            <span>PRESS [ESC] TO RETURN</span>
+          </div>
+
+          <!-- Live Google Search Suggestions Dropdown (Floating Dropdown) -->
+          <div id="searchSuggestions" class="p3-suggestions-list hidden"></div>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: DYNAMIC BOOKMARKS INVENTORY -->
+      <div class="sub-panel hidden" id="panelBookmarks">
+        <div class="bookmarks-list" id="bookmarksList">
+          <div class="p3-loading-tag">LOADING CHROME BOOKMARKS...</div>
+        </div>
+      </div>
+
+      <!-- SCREEN 3: DYNAMIC PINNED & TOP SITES -->
+      <div class="sub-panel hidden" id="panelPinned">
+        <div class="pinned-header-controls">
+          <button class="sub-ctrl-btn" id="addShortcutBtn">+ PIN NEW SITE</button>
+          <button class="sub-ctrl-btn alt" id="resetShortcutBtn">↺ RESTORE BEHAVIOR TOP SITES</button>
+        </div>
+        <div class="pinned-grid" id="pinnedGrid">
+          <div class="p3-loading-tag">ANALYZING BROWSING BEHAVIOR...</div>
+        </div>
+      </div>
+
+      <!-- Add Shortcut In-World Modal -->
+      <div id="addShortcutModal" class="sub-mini-modal hidden">
+        <div class="mini-modal-frame">
+          <div class="mini-modal-title">// PIN CUSTOM SHORTCUT</div>
+          <input type="text" id="shortcutNameInput" placeholder="Site Name (e.g. YouTube, Twitch)" class="mini-modal-input" />
+          <input type="url" id="shortcutUrlInput" placeholder="URL (e.g. https://twitch.tv)" class="mini-modal-input" />
+          <div class="mini-modal-actions">
+            <button id="cancelShortcutBtn" class="mini-modal-btn alt">CANCEL</button>
+            <button id="confirmShortcutBtn" class="mini-modal-btn">PIN SITE ↵</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 4: SYSTEM SETTINGS -->
+      <div class="sub-panel hidden" id="panelSettings">
+        <div class="settings-list">
+          <!-- Audio Toggle -->
+          <div class="setting-item" id="settingSoundToggle">
+            <div>
+              <div class="setting-name">ATLUS AUDIO SYNTHESIZER</div>
+              <div class="setting-desc">Snappy metallic menu chirps and sword confirm effects</div>
+            </div>
+            <button class="setting-btn" id="btnSoundState">ENABLED</button>
+          </div>
+
+          <!-- Loop Calibrator Slider -->
+          <div class="setting-item flex-col">
+            <div class="w-full flex-between mb-2">
+              <div class="setting-name">SEAMLESS LOOP TIMING</div>
+              <div class="tuner-val" id="tunerValueText">2.40s</div>
+            </div>
+            <input type="range" id="tunerSlider" min="0.5" max="4.5" step="0.05" value="2.40" class="tuner-slider">
+            <div class="tuner-hint">Drag slider to calibrate exact video loop timestamp</div>
+            <button id="saveTunerBtn" class="setting-btn mt-2 w-full">SAVE TIMING ↵</button>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- Audio and Controller Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/newtab.js"></script>
+</body>
+</html>
