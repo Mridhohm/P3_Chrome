@@ -35,13 +35,24 @@ The suite consists of two complementary components:
 
 ## 🚀 Installation Guide
 
-### Prerequisites
-- Google Chrome (or any Chromium-based browser such as Brave, Edge, Opera, or Vivaldi).
+> [!WARNING]
+> **Avoid the "Manifest file is missing or unreadable" Error:**
+> If you download the full repository source zip, **do not select the outer `P3_Chrome` root folder**. Chrome needs the specific subfolder that contains `manifest.json`.
+> - For the New Tab: Select the **`p3r-newtab-extension`** folder.
+> - For the Theme: Select the **`p3r-chrome-theme`** folder.
+
+### Option A: Quick Standalone Downloads (Recommended)
+You can download the pre-packaged standalone archives directly from our [**Releases Page (v1.0)**](https://github.com/Mridhohm/P3_Chrome/releases/tag/v1.0):
+1. Download **`p3r-newtab-extension-v1.0.zip`** (and optionally **`p3r-chrome-theme-v1.0.zip`**).
+2. Right-click the downloaded `.zip` and click **Extract All**.
+3. Open Chrome and go to `chrome://extensions/`.
+4. Enable **Developer mode** (top-right toggle).
+5. Click **Load unpacked** and select the extracted folder directly.
 
 ---
 
-### Step 1: Install the Native Chrome Theme (`p3r-chrome-theme`)
-1. Download or clone this repository:
+### Option B: From Git Repository
+1. Clone or download this repository:
    ```bash
    git clone https://github.com/Mridhohm/P3_Chrome.git
    ```
@@ -51,17 +62,9 @@ The suite consists of two complementary components:
    ```
 3. Enable **Developer mode** using the toggle in the top-right corner.
 4. Click **Load unpacked** in the top-left corner.
-5. Select the **`p3r-chrome-theme`** folder.
-6. Your browser window, tabs, and toolbar will immediately transform into the Persona 3 Reload color scheme!
-
----
-
-### Step 2: Install the Interactive New Tab Extension (`p3r-newtab-extension`)
-1. In the same **`chrome://extensions/`** tab:
-2. Click **Load unpacked**.
-3. Select the **`p3r-newtab-extension`** folder.
-4. Open a new tab (`Ctrl + T`).
-5. When prompted by Chrome: *"Is this the new tab you were expecting?"*, click **Keep it**.
+5. Select the **`p3r-newtab-extension`** folder inside `P3_Chrome`.
+6. Open a new tab (`Ctrl + T`) and click **Keep it** when prompted!
+7. *(Optional)* Click **Load unpacked** again and select **`p3r-chrome-theme`** to tint the browser top frame and tabs to oceanic blue.
 
 ---
 
